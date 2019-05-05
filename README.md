@@ -49,3 +49,17 @@ Or anything else – the possibilities are endless and only bound by your imagin
 - Python PIPENV Python package download manager [available here](https://github.com/pypa/pipenv#installation)
 - Python Requests send HTTP requests [available here](https://2.python-requests.org//en/master/user/install/)
 - Python LXML [available here](http://lxml.de/installation.html)
+
+## Setup
+
+- First setup the virtual env
+
+```python
+pipenv --python python 3
+```
+
+- Install packages
+
+```python
+pipenv install requests lxml
+```
