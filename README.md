@@ -62,3 +62,17 @@ pipenv --python python 3
 ```python
 pipenv install requests lxml
 ```
+
+## Run
+
+```python
+pipenv shell
+python amazon_product.py
+```
+
+## What to do if you run into captchas ( Blocked ) while scraping?
+
+1. Use proxies and rotate them
+2. Specify the User Agents of latest browsers and rotate them
+3. Reduce the number of ASINs you scrape per minute
+4. Retry, Retry, Retry

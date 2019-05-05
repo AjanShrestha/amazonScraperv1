@@ -18,7 +18,7 @@ def parse(url):
             # Generating random delays
             sleep(randint(1, 3))
             # Adding verify=False to avold ssl related issues
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers, verify=False)
 
             if response.status_code == 200:
                 doc = html.fromstring(response.content)
