@@ -7,13 +7,15 @@ from time import sleep
 
 import requests
 from lxml import html
+from fake_useragent import UserAgent
 
 from utils.proxies import get_proxies, get_working_proxy
 
 
 def parse(url, proxy):
+    ua = UserAgent(cache=False)
     headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'
+        'User-Agent': ua.random
     }
     try:
         # Retrying for failed requests
