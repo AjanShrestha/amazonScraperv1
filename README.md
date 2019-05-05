@@ -23,3 +23,29 @@
    Reviews offer abundant amounts of information. If you’re targeting an established set of sellers who have been selling reasonable volumes, you can extract the reviews of their products to find what you should avoid and what you could quickly improve on while trying to sell similar products on Amazon.
 
 Or anything else – the possibilities are endless and only bound by your imagination
+
+## What data are we extracting rom Amazon?
+
+![](images/xamazon_scraping_screenshot.png)
+
+1. Product Name
+2. Category
+3. Original Price
+4. Sale Price
+5. Avaiability
+6. URL
+
+## Process
+
+- We'll build a scraper in Python that can go to any Amazon product page using an ASIN - a unique ID Amazon uses to keep track of products in its database.
+- First gather the ASIN
+- Next step is to build a script that goes to each one of those product pages, dowloads its HTML, and extracts the fields you need.
+- Once, we extract the information, we'll save it into a JSON file for now.
+
+## What tools do wo need?
+
+- Python 3 [available here](https://www.python.org/downloads/)
+- Python PIP to install python packages [available here](https://pip.pypa.io/en/stable/installing/)
+- Python PIPENV Python package download manager [available here](https://github.com/pypa/pipenv#installation)
+- Python Requests send HTTP requests [available here](https://2.python-requests.org//en/master/user/install/)
+- Python LXML [available here](http://lxml.de/installation.html)
