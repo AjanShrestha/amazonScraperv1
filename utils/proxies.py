@@ -48,7 +48,8 @@ def __is_proxy_working(proxy):
         url = "https://httpbin.org/ip"
         requests.get(
             url, proxies={
-                "http": proxy, "https": proxy})
+                "http": proxy, "https": proxy},
+            timeout=6)
         return True
     except Exception:
         return False

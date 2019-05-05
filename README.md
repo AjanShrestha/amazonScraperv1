@@ -76,3 +76,8 @@ python amazon_product.py
 2. Specify the User Agents of latest browsers and rotate them
 3. Reduce the number of ASINs you scrape per minute
 4. Retry, Retry, Retry
+
+## Solution Offered
+
+1. Proxy Rotation
+2. User Agents Rotation
