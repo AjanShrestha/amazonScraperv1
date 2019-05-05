@@ -26,14 +26,13 @@ Or anything else – the possibilities are endless and only bound by your imagin
 
 ## What data are we extracting rom Amazon?
 
-![](images/xamazon_scraping_screenshot.png)
+![](images/Amazon_Scraping_Screenshot.png)
 
 1. Product Name
 2. Category
-3. Original Price
-4. Sale Price
-5. Avaiability
-6. URL
+3. Sale Price
+4. Avaiability
+5. URL
 
 ## Process
 

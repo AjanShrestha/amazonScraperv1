@@ -24,14 +24,12 @@ def parse(url):
                 doc = html.fromstring(response.content)
                 XPATH_NAME = '//span[@id = "productTitle"]//text()'
                 XPATH_SALE_PRICE = '//span[contains(@id, "priceblock_ourprice") or contains(@id, "saleprice")]/text()'
-                # XPATH_ORIGINAL_PRICE = '//td[contains(text(), "List Price") or contains(@id), "M.R.P" or contains(text(), "Price")]/following-sibling::td/text()'
                 XPATH_CATEGORY = '//a[@class="a-link-normal a-color-tertiary"]//text()'
                 XPATH_AVAILABILITY = '//div[@id="availability"]/span//text()'
 
                 RAW_NAME = doc.xpath(XPATH_NAME)
                 RAW_SALE_PRICE = doc.xpath(XPATH_SALE_PRICE)
                 RAW_CATEGORY = doc.xpath(XPATH_CATEGORY)
-                # RAW_ORIGINAL_PRICE = doc.xpath(XPATH_ORIGINAL_PRICE)
                 RAW_AVAILABILITY = doc.xpath(XPATH_AVAILABILITY)
 
                 NAME = ' '.join(''.join(RAW_NAME).split()
@@ -40,13 +38,9 @@ def parse(url):
                     ''.join(RAW_SALE_PRICE).split()).strip() if RAW_SALE_PRICE else None
                 CATEGORY = ' > '.join(
                     [i.strip() for i in RAW_CATEGORY]) if RAW_CATEGORY else None
-                # ORIGINAL_PRICE = ''.join(
-                #     RAW_ORIGINAL_PRICE).strip() if RAW_AVAILABILITY else None
                 AVAILABILITY = ''.join(
                     RAW_AVAILABILITY).strip() if RAW_AVAILABILITY else None
 
-                # if not ORIGINAL_PRICE:
-                #     ORIGINAL_PRICE = SALE_PRICE
                 # retrying in case of captcha
                 if not NAME:
                     raise ValueError('captcha')
@@ -55,7 +49,6 @@ def parse(url):
                     'NAME': NAME,
                     'SALE_PRICE': SALE_PRICE,
                     'CATEGORY': CATEGORY,
-                    # 'ORIGINAL_PRICE': ORIGINAL_PRICE,
                     'AVAILABILITY': AVAILABILITY,
                     'URL': url
                 }
