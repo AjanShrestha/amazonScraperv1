@@ -1,14 +1,17 @@
 import csv
 import json
 import os
+from itertools import cycle
 from random import randint
 from time import sleep
 
 import requests
 from lxml import html
 
+from utils.proxies import get_proxies, get_working_proxy
 
-def parse(url):
+
+def parse(url, proxy):
     headers = {
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36'
     }
@@ -18,7 +21,8 @@ def parse(url):
             # Generating random delays
             sleep(randint(1, 3))
             # Adding verify=False to avold ssl related issues
-            response = requests.get(url, headers=headers, verify=False)
+            response = requests.get(
+                url, headers=headers, proxies={"https": proxy})
 
             if response.status_code == 200:
                 doc = html.fromstring(response.content)
@@ -59,15 +63,16 @@ def parse(url):
         print(e)
 
 
-def ReadAsin():
+def ReadAsin(proxy_pool):
     AsinList = csv.DictReader(
         open(os.path.join(os.path.dirname(__file__), "Asinfeed.csv")))
     extracted_data = []
     for AsinValue in AsinList:
+        proxy = get_working_proxy(proxy_pool)
         url = "http://www.amazon.com/dp/" + AsinValue["ASIN"]
         print("Processing: " + url)
         # Calling the parser
-        parsed_data = parse(url)
+        parsed_data = parse(url, proxy)
         if parsed_data:
             extracted_data.append(parsed_data)
     return extracted_data
@@ -87,4 +92,6 @@ def write_extracted(extracted_data):
 
 
 if __name__ == "__main__":
-    write_extracted(ReadAsin())
+    proxies = get_proxies()
+    proxy_pool = cycle(proxies)
+    write_extracted(ReadAsin(proxy_pool))
